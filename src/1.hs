@@ -1,3 +1,6 @@
+import Data.List
+import System.IO.Unsafe
+
 -- Problem 1 --
 
 sum3or5 = sum [x | x <- [1..999], (x `mod` 3 == 0 || x `mod` 5 == 0)] 
@@ -73,6 +76,28 @@ problem7 :: IO ()
 problem7 = print prime100001
 
 -- Problem 8 --
+
+parseNumber = do
+    str <- readFile "../util/number.txt"
+    return $ map (read :: String -> Int) . lines . intersperse '\n' $ filter (/= '\n') str
+
+splitIn13 :: [Int] -> [[Int]]
+splitIn13 (x:xs) | length (x:xs) >= 14 =  take 13 (x:xs) : splitIn13 xs
+                 | otherwise = [(x:xs)]
+
+splitParsed = splitIn13 $ unsafePerformIO parseNumber --AVOID TO DO THIS
+
+multiply13 = map (foldl (*) 1) splitParsed
+
+max13Product = maximum multiply13
+
+problem8 :: IO ()
+problem8 = print max13Product
+
+-- Problem 9 --
+
+
+
 
 
 
