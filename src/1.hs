@@ -96,10 +96,12 @@ problem8 = print max13Product
 
 -- Problem 9 --
 
---VStry--
+pythagoras = let thrd (_,_,c) = c 
+                 get1 (a,_,_) = a 
+                 get2 (_,b,_) = b
+             in get1 triplet * get2 triplet * thrd triplet
+             where triplet = head [(a,b,c) | a <- [1..1000], b <- [1..1000], let c = sqrt(a^2 + b^2), a < b && b < c, a + b + c == 1000] 
 
-
-
-
-
+problem9 :: IO ()
+problem9 = print pythagoras
 
