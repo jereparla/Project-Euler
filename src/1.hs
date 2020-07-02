@@ -1,5 +1,6 @@
 import Data.List
 import System.IO.Unsafe
+import Data.Numbers.Primes
 
 -- Problem 1 --
 
@@ -96,12 +97,16 @@ problem8 = print max13Product
 
 -- Problem 9 --
 
-pythagoras = let thrd (_,_,c) = c 
-                 get1 (a,_,_) = a 
+pythagoras = let get1 (a,_,_) = a
                  get2 (_,b,_) = b
+                 thrd (_,_,c) = c          
              in get1 triplet * get2 triplet * thrd triplet
              where triplet = head [(a,b,c) | a <- [1..1000], b <- [1..1000], let c = sqrt(a^2 + b^2), a < b && b < c, a + b + c == 1000] 
 
 problem9 :: IO ()
 problem9 = print pythagoras
 
+-- Problem 10 --
+
+problem10 :: IO ()
+problem10 = print sumPrimes
